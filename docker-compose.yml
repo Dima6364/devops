@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  web:
+    image: httpd:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./web:/usr/local/apache2/htdocs/
+  check_server:
+    build: .
+    volumes:
+      - ./logs:/var/log/
+    environment:
+      - MAIL_USER=dmitroishak@gmail.com
+      - MAIL_PASS=password
+    restart: always
